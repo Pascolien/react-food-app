@@ -40,7 +40,14 @@ const Homepage = ()=>{
         <div className="homepage">
             <Search 
             getDataFromSearchComponent = {getDataFromSearchComponent} 
-            dummydata = {dummydata}/>
+            dummydata = {dummydata}
+            />
+
+            {/*show loading state */}
+
+            {
+                loadingState && <div>loading recipes ! Please wait</div>
+            }
         </div>
     )
 }
