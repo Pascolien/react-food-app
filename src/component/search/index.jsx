@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './style.css'
 
 //useState
@@ -6,7 +6,7 @@ import './style.css'
 
 const Search = (props)=>{
     console.log(props);
-    const {getDataFromSearchComponent} = props;
+    const {getDataFromSearchComponent,apiCalledSucces, setApiCalledSucces} = props;
         const[inputValue, setInputValue] = useState('') //initial value
 
         const handleInputValue = (event)=>{
@@ -20,6 +20,13 @@ const Search = (props)=>{
             event.preventDefault()
             getDataFromSearchComponent(inputValue)
         }
+
+        useEffect(()=>{
+            if(apiCalledSucces){
+                setInputValue('')
+                setApiCalledSucces(false)
+            }
+        },[apiCalledSucces])
     return (
         <form onSubmit={handleSubmit} className="Search">
             <input name="search" onChange={handleInputValue} value={inputValue} placeholder="Seach Recipes" id="search"/>
